@@ -11,26 +11,35 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-public class MyOmok02 extends JFrame {
+public class MyOmok03_19 extends JFrame {
 
 	private JPanel contentPane;
 	boolean flag_b = false;
 	boolean flag_wb = true;
 	boolean flag_ing = true;
-	int[][] arr2D  = {
-		{0,0,0,0,0,	0,0,0,0,0},
-		{0,0,0,0,0,	0,0,0,0,0},
-		{0,0,0,0,0,	0,0,0,0,0},
-		{0,0,0,0,0,	0,0,0,0,0},
-		{0,0,0,0,0,	0,0,0,0,0},
-		
-		{0,0,0,0,0,	0,0,0,0,0},
-		{0,0,0,0,0,	0,0,0,0,0},
-		{0,0,0,0,0,	0,0,0,0,0},
-		{0,0,0,0,0,	0,0,0,0,0},
-		{0,0,0,0,0,	0,0,0,0,0}
-	};
-	JLabel [][]lbl2D = new JLabel[10][10];
+//	int[][] arr2D  = {
+//		{0,0,0,0,0,	0,0,0,0,0},
+//		{0,0,0,0,0,	0,0,0,0,0},
+//		{0,0,0,0,0,	0,0,0,0,0},
+//		{0,0,0,0,0,	0,0,0,0,0},
+//		{0,0,0,0,0,	0,0,0,0,0},
+//		{0,0,0,0,0,	0,0,0,0,0},
+//		{0,0,0,0,0,	0,0,0,0,0},
+//		{0,0,0,0,0,	0,0,0,0,0},
+//		{0,0,0,0,0,	0,0,0,0,0},
+//		
+//		{0,0,0,0,0,	0,0,0,0,0},
+//		{0,0,0,0,0,	0,0,0,0,0},
+//		{0,0,0,0,0,	0,0,0,0,0},
+//		{0,0,0,0,0,	0,0,0,0,0},
+//		{0,0,0,0,0,	0,0,0,0,0},
+//		{0,0,0,0,0,	0,0,0,0,0},
+//		{0,0,0,0,0,	0,0,0,0,0},
+//		{0,0,0,0,0,	0,0,0,0,0},
+//		{0,0,0,0,0,	0,0,0,0,0}
+//	};
+	int [][] arr2D = new int [19][19];
+	JLabel [][]lbl2D = new JLabel[arr2D.length][arr2D.length];
 
 	/**
 	 * Launch the application.
@@ -39,7 +48,7 @@ public class MyOmok02 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MyOmok02 frame = new MyOmok02();
+					MyOmok03_19 frame = new MyOmok03_19();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,9 +60,9 @@ public class MyOmok02 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MyOmok02() {
+	public MyOmok03_19() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 482, 450);
+		setBounds(100, 100, 845, 856);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -70,11 +79,11 @@ public class MyOmok02 extends JFrame {
 		
 		lbl_reset.setToolTipText("");
 		lbl_reset.setIcon(null);
-		lbl_reset.setBounds(410, 10, 58, 40);
+		lbl_reset.setBounds(775, 10, 58, 40);
 		contentPane.add(lbl_reset);
 			
-		for(int i=0;i<10;i++){
-			for(int j=0;j<10;j++){
+		for(int i=0;i<arr2D.length;i++){
+			for(int j=0;j<arr2D.length;j++){
 				JLabel lbl = new JLabel("");
 				lbl.addMouseListener(new MouseAdapter() {
 					@Override
@@ -82,7 +91,7 @@ public class MyOmok02 extends JFrame {
 						myclick(e);
 					}
 				});
-				lbl.setIcon(new ImageIcon(MyOmok02.class.getResource("/day05/0.png")));
+				lbl.setIcon(new ImageIcon(MyOmok03_19.class.getResource("/day05/0.png")));
 				lbl.setBounds(j*40, i*40, 40, 40);
 				lbl.setText(i+","+j);
 				contentPane.add(lbl);
@@ -94,8 +103,8 @@ public class MyOmok02 extends JFrame {
 	
 	void myreset() {
 		// 이중포문으로 arr다 넣어주고 마이랜더 호출 플래그ing(재시작)는 트루로 플래그 땁디(흑돌선)는 트루로
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 10; j++) {
+		for (int i = 0; i < arr2D.length; i++) {
+			for (int j = 0; j < arr2D.length; j++) {
 				arr2D[i][j] = 0; 
 			}
 		}
@@ -105,16 +114,16 @@ public class MyOmok02 extends JFrame {
 	}
 	
 	void myrender() {
-		for (int i =0; i<10; i++) {
-			for(int j=0; j<10; j++) {
+		for (int i =0; i<arr2D.length; i++) {
+			for(int j=0; j<arr2D.length; j++) {
 				if(arr2D[i][j]==0) {
-					lbl2D[i][j].setIcon(new ImageIcon(MyOmok02.class.getResource("/day05/0.png")));
+					lbl2D[i][j].setIcon(new ImageIcon(MyOmok03_19.class.getResource("/day05/0.png")));
 				}
 				if(arr2D[i][j]==1) {
-					lbl2D[i][j].setIcon(new ImageIcon(MyOmok02.class.getResource("/day05/1.png")));
+					lbl2D[i][j].setIcon(new ImageIcon(MyOmok03_19.class.getResource("/day05/1.png")));
 				}
 				if(arr2D[i][j]==2) {
-					lbl2D[i][j].setIcon(new ImageIcon(MyOmok02.class.getResource("/day05/2.png")));
+					lbl2D[i][j].setIcon(new ImageIcon(MyOmok03_19.class.getResource("/day05/2.png")));
 				}
 			}
 		}
