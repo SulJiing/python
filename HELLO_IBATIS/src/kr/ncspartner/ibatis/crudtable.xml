@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="crudtable" >
+	<select id="select" resultClass="kr.ncspartner.model.Crudtable">
+		select crud_id,crud_name,mobile from crudtable
+		where crud_id = #crud_id#
+	</select>
+	<select id="selectList" parameterClass="string" resultClass="kr.ncspartner.model.Crudtable">
+		select crud_id,crud_name,mobile from crudtable
+	</select>
+	<update id="insert" parameterClass="kr.ncspartner.model.Crudtable">
+		INSERT INTO crudtable ( crud_name, mobile) VALUES ( #crud_name#, #mobile#)
+	</update>	
+	<update id="update" parameterClass="kr.ncspartner.model.Crudtable">
+		update crudtable set
+			crud_name = #crud_name#,
+			mobile = #mobile#
+		where
+			crud_id = #crud_id#
+	</update>	
+	<update id="delete" parameterClass="string">
+		delete from crudtable where crud_id=#crud_id#
+	</update>
+
+</sqlMap>
