@@ -268,6 +268,7 @@ public class MyOmok03_19 extends JFrame {
 			return;
 		}
 		JLabel temp = (JLabel) e.getSource();
+//		System.out.println(temp.getText());
 		// split
 		String str_ij = temp.getText();
 		String[] arr_ij = str_ij.split(",");
