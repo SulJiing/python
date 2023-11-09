@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Update;
+
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 import kr.ncspartner.ibatis.MySqlMapper;
@@ -39,12 +41,37 @@ public class CrudtableDao {
 	public static void main(String[] args) throws SQLException {
 		CrudtableDao dao = new CrudtableDao();
 		
-		ArrayList<Crudtable> list = (ArrayList<Crudtable>) dao.selectList();
+		// selectList
+		/*ArrayList<Crudtable> list = (ArrayList<Crudtable>) dao.selectList();
 		for(int i =0;i<list.size();i++) {
 			Crudtable temp = list.get(i);
 			System.out.print(temp.getCrud_id()+"	");
 			System.out.print(temp.getCrud_name()+"	");
-			System.out.print(temp.getMobile()+"	");
+			System.out.print(temp.getMobile()+"	");*/
+		
+		// select
+		/*Crudtable ct = dao.select(1);
+		System.out.println(ct.getCrud_id());
+		System.out.println(ct.getCrud_name());
+		System.out.println(ct.getMobile());*/
+		
+		// insert
+		/*Crudtable vo = new Crudtable();
+		vo.setCrud_name("1");
+		vo.setMobile("1");
+		int cnt = dao.insert(vo);
+		System.out.println("cnt : "cnt);*/
+		
+		// update
+		/*Crudtable vo = new Crudtable();
+		vo.setCrud_name("5");
+		vo.setMobile("5");
+		vo.setCrud_id(1);
+		int cnt = dao.update(vo);
+		System.out.println(cnt);*/
+		
+		// delete
+		/*int cnt = dao.delete("1");
+		System.out.println(cnt);*/
 		}
 	}
-}
