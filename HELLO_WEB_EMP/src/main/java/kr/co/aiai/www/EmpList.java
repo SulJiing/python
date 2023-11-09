@@ -27,15 +27,18 @@ public class EmpList extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("emp_list.jsp");
 		String a = "홍길동";
 		request.setAttribute("a",a);
-		ArrayList<Emp> list = new ArrayList<Emp>();
 		
 		EmpDao dao = new EmpDao();
+		
+		List<Emp> list = null;
 		try {
-			List<Emp> list2 = dao.selectList();
-			request.setAttribute("dao", list2);
+			list = (List<Emp>) dao.selectList();
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		request.setAttribute("dao", list);
 //		list.add(new Emp("1","1","1","1"));
 //		list.add(new Emp("2","2","2","2"));
 //		request.setAttribute("list", list);

@@ -17,10 +17,10 @@ EMP_LIST_JSP<br>
 <%=b %><br>
 ${a}<br>
 <%
-	ArrayList<Emp> list = (ArrayList<Emp>)request.getAttribute("list");
+// 	ArrayList<Emp> list = (ArrayList<Emp>)request.getAttribute("list");
 	List<Emp> list2 = (List<Emp>)request.getAttribute("dao");
 %>
-<%=list.size() %>
+<%-- <%=list.size() %> --%>
 
 
 <table border="1px">
