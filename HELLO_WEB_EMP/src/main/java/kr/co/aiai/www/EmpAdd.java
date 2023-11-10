@@ -1,10 +1,7 @@
 package kr.co.aiai.www;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,23 +13,32 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.aiai.dao.EmpDao;
 import kr.co.aiai.model.Emp;
 
-@WebServlet("/emp_list")
-public class EmpList extends HttpServlet {
+@WebServlet("/emp_add")
+public class EmpAdd extends HttpServlet {
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		EmpDao ed = new EmpDao();
-		List<Emp> list = null;
-		try {
-			list = ed.selectList();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("list", list);
+//		String e_id = request.getParameter("e_id");
 		
-		RequestDispatcher rd = request.getRequestDispatcher("emp_list.jsp");
+		EmpDao ed = new EmpDao();
+//		Emp vo = null;
+//		try {
+//			vo = ed.select(e_id);
+//		} catch (SQLException e) {
+//			System.out.println("e:"+e);
+//		}
+		
+//		request.setAttribute("vo", vo);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("emp_add.jsp");
 		rd.forward(request, response);
+		
+//		request.getRequestDispatcher("emp_mod.jsp").forward(request, response);
+		
 	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+
 }

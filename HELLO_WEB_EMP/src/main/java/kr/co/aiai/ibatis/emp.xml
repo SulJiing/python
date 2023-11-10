@@ -5,24 +5,44 @@
 
 <sqlMap namespace="emp" >
 	<select id="selectList" parameterClass="string" resultClass="kr.co.aiai.model.Emp">
-		select e_id, e_name, gen, addr from emp
+		select 
+			e_id,
+			e_name,
+			gen,
+			addr
+		from 
+			emp
 	</select>
-	<select id="select" resultClass="kr.co.aiai.model.Emp"> <!--resultClass 반환받을 값이 있을 때  -->
-		select e_id, e_name, gen, addr from emp
-		where e_id = #e_id#
+	<select id="select" resultClass="kr.co.aiai.model.Emp">
+		select 
+			e_id,
+			e_name,
+			gen,
+			addr
+		from 
+			emp
+		where 
+			e_id = #e_id#
 	</select>
+	
 	<update id="insert" parameterClass="kr.co.aiai.model.Emp">
-		insert into emp
-		(e_id, e_name, gen, addr)
-		values (#e_id#, #e_name#, #gen#, #addr#)
-	</update>
+		INSERT INTO emp 
+		(e_id,e_name,gen,addr) 
+		VALUES 
+		(#e_id#,#e_name#,#gen#,#addr#)
+	</update>	
 	<update id="update" parameterClass="kr.co.aiai.model.Emp">
-		update emp
-		set e_name=#e_name#, gen=#gen#, addr=#addr#
-		where e_id=#e_id#
+		update emp 
+		set
+			e_name = #e_name#,
+			gen = #gen#,
+			addr = #addr#
+		where
+			e_id = #e_id#
 	</update>
-	<update id="delete" parameterClass="String">
-		delete from emp
-		where e_id = #e_id#
+	<update id="delete" parameterClass="string">
+		delete from emp 
+		where
+			e_id = #e_id#
 	</update>
 </sqlMap>

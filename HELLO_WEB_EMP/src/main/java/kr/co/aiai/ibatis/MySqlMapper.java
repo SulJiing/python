@@ -12,7 +12,6 @@ public class MySqlMapper {
 
 	static {
 		try {
-			// ���������� �ִ� ��ġ ��~~~~~
 			Reader reader = Resources
 					.getResourceAsReader("kr/co/aiai/ibatis/SqlMapConfig.xml");
 			sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);

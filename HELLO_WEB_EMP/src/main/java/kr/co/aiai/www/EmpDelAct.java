@@ -1,10 +1,7 @@
 package kr.co.aiai.www;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,23 +13,26 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.aiai.dao.EmpDao;
 import kr.co.aiai.model.Emp;
 
-@WebServlet("/emp_list")
-public class EmpList extends HttpServlet {
+@WebServlet("/emp_del_act")
+public class EmpDelAct extends HttpServlet {
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		EmpDao ed = new EmpDao();
-		List<Emp> list = null;
-		try {
-			list = ed.selectList();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("list", list);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("emp_list.jsp");
-		rd.forward(request, response);
 	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		String e_id = request.getParameter("e_id");
+		
+		EmpDao ed = new EmpDao();
+		int cnt = -1;
+		try {
+			cnt = ed.delete(e_id); // 정상동작되면 1이됨
+		} catch (SQLException e) {
+			System.out.println("cnt:"+cnt);
+		}
+		request.setAttribute("cnt", cnt);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("emp_del_act.jsp");
+		rd.forward(request, response);
 	}
 }

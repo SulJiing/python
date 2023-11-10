@@ -1,10 +1,7 @@
 package kr.co.aiai.www;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,22 +13,25 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.aiai.dao.EmpDao;
 import kr.co.aiai.model.Emp;
 
-@WebServlet("/emp_list")
-public class EmpList extends HttpServlet {
+@WebServlet("/emp_detail")
+public class EmpDetail extends HttpServlet {
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String e_id = request.getParameter("e_id");
 		
 		EmpDao ed = new EmpDao();
-		List<Emp> list = null;
+		Emp vo = null;
 		try {
-			list = ed.selectList();
+			vo = ed.select(e_id);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("e:"+e);
 		}
-		request.setAttribute("list", list);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("emp_list.jsp");
+		request.setAttribute("vo", vo);
+		RequestDispatcher rd = request.getRequestDispatcher("emp_detail.jsp");
 		rd.forward(request, response);
 	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
