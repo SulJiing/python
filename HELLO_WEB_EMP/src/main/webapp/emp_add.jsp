@@ -17,7 +17,7 @@ function fn_add_act(){
 </script>
 </head>
 <body>
-EMP_MOD
+EMP_ADD
 <form name="frm" action="emp_add_act" method="post">
 	<table border="1px">
 		<tr>
