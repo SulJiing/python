@@ -11,18 +11,17 @@ input[name=it_first],input[name=it_last] {
 	height: 200px;
 }
 </style>
+<script src="jquery-3.7.1.js"></script>
 <script type="text/javascript">
 function myclick() {
-	var f = document.getElementsByName("it_first")[0].value;
-	var l = document.getElementsByName("it_last")[0].value;
-	console.log(f);
-	console.log(l);
+	var f = $('input[name=it_first]').val();
+	var l = $('input[name=it_last]').val();
 	
 	var txt = "";
 	for(var i=f; i<=l; i++){ // 시작과 끝 설정하고
 		txt += getStar(i); // 되돌려받고
 	}
-	mydiv.innerHTML += txt; // 누적된 값 출력해주기
+	$('#mydiv').html(txt); // 누적된 값 출력해주기
 }
 
 function getStar(cnt) { // 찍고
@@ -33,6 +32,11 @@ function getStar(cnt) { // 찍고
 	ret +="<br>";
 	return ret; // 되돌려주고
 }
+$(document).ready(function() {
+	$('#btn').on('click', function(event) {
+		myclick();
+	});
+});
 </script>
 </head>
 <body>
@@ -51,7 +55,7 @@ function getStar(cnt) { // 찍고
 	</tr>
 	<tr>
 		<td colspan="2">
-			<input type="button" value="별그리기" onclick="myclick()">
+			<input type="button" value="별그리기" id="btn"/>
 		</td>
 	</tr>
 	<tr>

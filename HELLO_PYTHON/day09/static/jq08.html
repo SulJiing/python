@@ -8,10 +8,11 @@
 	width: 30px;
 }
 </style>
+<script src="jquery-3.7.1.js"></script>
 <script type="text/javascript">
 function myclick() {
 // 	var me = document.getElementById("it_mine").value;
-	var me = document.querySelector("#itMine").value;
+	var me = $("#itMine").val();
 	
 	var com = parseInt(Math.random()*3)+1;
 	console.log(me);
@@ -28,11 +29,11 @@ function myclick() {
 	}
 	
 	if ((com - me === 1) || (com - me === -2)) {
-        itResult.value = "패배";
+        $('#itResult').val("패배");
     } else if (com === me) {
-        itResult.value = "무승부";
+        $('#itResult').val("무승부");
     } else {
-        itResult.value = "승리";
+        $('#itResult').val("승리");
     }
 	
 	if(com==1) {
@@ -43,8 +44,13 @@ function myclick() {
 		com = "보";
 	}
 	console.log(com);
-	itCom.value = com;
+	$('#itCom').val(com);
 }
+$(document).ready(function() {
+	$('#btn').on('click', function(event) {
+		myclick();
+	});
+});
 </script>
 </head>
 <body>
@@ -69,7 +75,7 @@ function myclick() {
 	</tr>
 	<tr>
 		<td colspan="2">
-			<input type="button" value="게임하기" onclick="myclick()">
+			<input type="button" value="게임하기" id="btn"/>
 		</td>
 	</tr>
 </table>
