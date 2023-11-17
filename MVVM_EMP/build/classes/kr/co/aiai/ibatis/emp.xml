@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="emp">
+	<select id="selectList" parameterClass="string" resultClass="kr.co.aiai.vo.EmpVO">
+		select e_id, e_name, gen, addr from emp
+	</select>
+	<select id="select" resultClass="kr.co.aiai.vo.EmpVO"> <!--resultClass 반환받을 값이 있을 때  -->
+		select e_id, e_name, gen, addr from emp
+		where e_id = #e_id#
+	</select>
+	<update id="insert" parameterClass="kr.co.aiai.vo.EmpVO">
+		insert into emp
+		(e_id, e_name, gen, addr)
+		values (#e_id#, #e_name#, #gen#, #addr#)
+	</update>
+	<update id="update" parameterClass="kr.co.aiai.vo.EmpVO">
+		update emp
+		set e_name=#e_name#, gen=#gen#, addr=#addr#
+		where e_id=#e_id#
+	</update>
+	<update id="delete" parameterClass="String">
+		delete from emp
+		where e_id = #e_id#
+	</update>
+</sqlMap>

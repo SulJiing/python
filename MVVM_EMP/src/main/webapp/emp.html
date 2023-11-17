@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-3.7.1.js"></script>
+<script type="text/javascript">
+
+function fn_list() {
+	var param = "";
+	param += "dummy=" + Math.random();
+	param += "&domain_url=hello";
+	$.ajax({
+		url : "emp_list",
+		data : param,
+		dataType : "json",
+		type : "post",
+		async: true,
+		success : function(res) {
+			console.log(res);
+			var list = res;
+			var txt = "";
+			for(var i=0; i<list.length; i++) {
+				var e = list[i];
+				txt += "<tr>\n";
+				txt += "	<td><a href='javascript:fn_one(\""+e.e_id+"\")'>"+e.e_id+"</a></td>\n";
+				txt += "	<td>"+e.e_name+"</td>\n";
+				txt += "	<td>"+e.gen+"</td>\n";
+				txt += "	<td>"+e.addr+"</td>\n";
+				txt += "</tr>\n";
+			}
+			$("#my_tbody").html(txt);
+		}
+	});
+}
+function fn_one(e_id) {
+	var param = "";
+	param += "dummy=" + Math.random(); // 같은 url을 던지면 서버로 안가고 자기 브라우저를 사용하는 경향이 있었음 - 지금은 안그럼
+	param += "&e_id="+e_id;
+	$.ajax({
+		url : "emp_one",
+		data : param,
+		dataType : "json",
+		type : "post",
+		async: true,
+		success : function(res) {
+			console.log(res);
+			var vo = res;
+			$("#e_id").val(vo.e_id);
+			$("#e_name").val(vo.e_name);
+			$("#gen").val(vo.gen);
+			$("#addr").val(vo.addr);
+		}
+	});
+}
+$(document).ready(function() {
+	fn_list();
+});
+
+function fn_add() {
+	var param = "";
+	param += "dummy=" + Math.random(); // 같은 url을 던지면 서버로 안가고 자기 브라우저를 사용하는 경향이 있었음 - 지금은 안그럼
+	param += "&e_id="+$("#e_id").val();
+	param += "&e_name="+$("#e_name").val();
+	param += "&gen="+$("#gen").val();
+	param += "&addr="+$("#addr").val();
+	$.ajax({
+		url : "emp_add",
+		data : param,
+		dataType : "json",
+		type : "post",
+		async: true,
+		success : function(res) {
+			console.log(res);
+			var cnt = res;
+			if(cnt ==1) {
+				alert("정상적으로 추가되었습니다.");
+				fn_list();
+				$("#e_id").val("");
+				$("#e_name").val("");
+				$("#gen").val("");
+				$("#addr").val("");
+			} else {
+				alert("추가도중 문제가 생겼습니다.");
+			}
+		}
+	});
+}
+
+function fn_mod() {
+	var param = "";
+	param += "dummy=" + Math.random(); // 같은 url을 던지면 서버로 안가고 자기 브라우저를 사용하는 경향이 있었음 - 지금은 안그럼
+	param += "&e_id="+$("#e_id").val();
+	param += "&e_name="+$("#e_name").val();
+	param += "&gen="+$("#gen").val();
+	param += "&addr="+$("#addr").val();
+	$.ajax({
+		url : "emp_mod",
+		data : param,
+		dataType : "json",
+		type : "post",
+		async: true,
+		success : function(res) {
+			var cnt = res;
+			console.log(res);
+			if(cnt ==1) {
+				alert("정상적으로 수정되었습니다.");
+				fn_list();
+				$("#e_id").val("");
+				$("#e_name").val("");
+				$("#gen").val("");
+				$("#addr").val("");
+			} else{
+				alert("수정도중 문제가 생겼습니다.");
+			}
+		}
+	});
+}
+
+function fn_del() {
+	var param = "";
+	param += "dummy=" + Math.random(); // 같은 url을 던지면 서버로 안가고 자기 브라우저를 사용하는 경향이 있었음 - 지금은 안그럼
+	param += "&e_id="+$("#e_id").val();
+	$.ajax({
+		url : "emp_del",
+		data : param,
+		dataType : "json",
+		type : "post",
+		async: true,
+		success : function(res) {
+			console.log(res);
+			var cnt = res;
+			if(cnt ==1) {
+				alert("정상적으로 삭제되었습니다.");
+				fn_list();
+				$("#e_id").val("");
+				$("#e_name").val("");
+				$("#gen").val("");
+				$("#addr").val("");
+			} else{
+				alert("삭제도중 문제가 생겼습니다.");
+			}
+		}
+	});
+}
+
+$(document).ready(function() {
+	$('#btn_add').on('click', function(event) {
+		fn_add();
+	});
+});
+$(document).ready(function() {
+	$('#btn_mod').on('click', function(event) {
+		fn_mod();
+	});
+});
+$(document).ready(function() {
+	$('#btn_del').on('click', function(event) {
+		fn_del();
+	});
+});
+	
+</script>
+</head>
+<body>
+	EMP_CRUD<br>
+	<table border="1px">
+		<thead>
+			<tr>
+				<td>사번</td>
+				<td>이름</td>
+				<td>성별</td>
+				<td>주소</td>
+			</tr>
+		</thead>
+		<tbody id="my_tbody">
+			<tr>
+				<td colspan="4">선택된 데이터가 없습니다.</td>
+			</tr>
+		</tbody>
+	</table>
+	<table border="1px">
+			<tr>
+				<td>사번</td>
+				<td>
+					<input type="text" id="e_id"/>
+				</td>
+			</tr>
+			<tr>
+				<td>이름</td>
+				<td>
+					<input type="text" id="e_name"/>
+				</td>
+			</tr>
+			<tr>
+				<td>성별</td>
+				<td>
+					<input type="text" id="gen"/>
+				</td>
+			</tr>
+			<tr>
+				<td>주소</td>
+				<td>
+					<input type="text" id="addr"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="button" value="추가" id="btn_add"/>
+					<input type="button" value="수정" id="btn_mod"/>
+					<input type="button" value="삭제" id="btn_del"/>
+				</td>
+			</tr>
+	</table>
+</body>
+</html>

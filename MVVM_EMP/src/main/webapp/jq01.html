@@ -6,22 +6,21 @@
 <script src="jquery-3.7.1.js"></script>
 <script type="text/javascript">
 
-	function myclick() {
-		$("#mydiv").html("Good Evening");
-		
-		$.ajax({
-			type : 'get',
-			url :'index',
-// 			data : '1',
-			success : function(data){
-				console.log(data);
-			},
-			error : function(xhr){
-				console.log(xhr.status);
-			}
-// 			dataType : 'json'
-		})
-	}
+function myclick() {
+	var param = "";
+	param += "dummy=" + Math.random();
+	param += "&domain_url=hello";
+	$.ajax({
+		url : "list",
+		data : param,
+		dataType : "json",
+		type : "post",
+		async: true,
+		success : function(res) {
+			console.log(res)
+		}
+	});
+}	
 	$(document).ready(function() {
 		$('#btn').on('click', function(event) {
 			myclick();
