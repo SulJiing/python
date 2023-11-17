@@ -13,6 +13,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import kr.co.aiai.vo.EmpVO;
 // Json으로 바꿔주는 util
 public class AjaxUtil {
+	
 	public static void responseXml(HttpServletResponse response, String resultStr) throws Exception {
 		response.setContentType("application/xml");
 		PrintWriter out = response.getWriter();
