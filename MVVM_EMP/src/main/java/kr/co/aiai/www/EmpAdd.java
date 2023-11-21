@@ -21,7 +21,6 @@ public class EmpAdd extends HttpServlet {
 		String e_name = request.getParameter("e_name");
 		String gen = request.getParameter("gen");
 		String addr = request.getParameter("addr");
-		System.out.println(e_id);
 		int cnt =0;
 		EmpDao dao = new EmpDao();
 		try {
@@ -31,7 +30,6 @@ public class EmpAdd extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
