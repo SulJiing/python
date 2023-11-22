@@ -12,17 +12,11 @@ face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_fronta
 # 이미지에서 얼굴을 검출합니다.
 faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
 
-i = 0
 # 검출된 얼굴 주위에 사각형을 그립니다.
-for idx,(x, y, w, h) in enumerate(faces):
-    # cv2.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0), 2) #사각형을 그리지 않고 짜르기 위함
-    img_cropped = gray[y:y+h,x:x+w]
-    cv2.imshow('{}'.format(idx),img_cropped)
-    cv2.waitKey()
-    cv2.imwrite(str(i)+".jpg", img_cropped)
-    i += 1
-    print(idx,x,y,w,h)
-    
-cv2.imshow('face detection',image)
-cv2.waitKey()
+for (x, y, w, h) in faces:
+    cv2.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0), 2)
+
+# 결과 이미지를 화면에 출력합니다.
+cv2.imshow('Face Detection', image)
+cv2.waitKey(0)
 cv2.destroyAllWindows()
