@@ -86,7 +86,7 @@ public class MyOmok02 extends JFrame {
 				lbl.setBounds(j*40, i*40, 40, 40);
 				lbl.setText(i+","+j);
 				contentPane.add(lbl);
-				lbl2D[i][j]= lbl; 
+				lbl2D[i][j]= lbl;
 			}
 		}
 		myrender();
