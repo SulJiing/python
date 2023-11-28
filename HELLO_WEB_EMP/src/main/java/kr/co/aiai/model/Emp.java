@@ -10,6 +10,7 @@ public class Emp {
 		
 	}
 	
+
 	public Emp(String e_id, String e_name, String gen, String addr) {
 		super();
 		this.e_id = e_id;
@@ -17,6 +18,7 @@ public class Emp {
 		this.gen = gen;
 		this.addr = addr;
 	}
+
 
 	public String getE_id() {
 		return e_id;
@@ -49,4 +51,5 @@ public class Emp {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
+
 }

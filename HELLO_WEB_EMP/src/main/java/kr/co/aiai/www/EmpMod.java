@@ -17,7 +17,6 @@ import kr.co.aiai.model.Emp;
 public class EmpMod extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String e_id = request.getParameter("e_id");
 		
 		EmpDao ed = new EmpDao();
@@ -29,14 +28,12 @@ public class EmpMod extends HttpServlet {
 		}
 		
 		request.setAttribute("vo", vo);
-		
 		RequestDispatcher rd = request.getRequestDispatcher("emp_mod.jsp");
 		rd.forward(request, response);
-		
-//		request.getRequestDispatcher("emp_mod.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+
 }

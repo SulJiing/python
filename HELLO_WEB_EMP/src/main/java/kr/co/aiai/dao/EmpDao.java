@@ -39,7 +39,12 @@ public class EmpDao {
 		EmpDao dao = new EmpDao();
 		List<Emp> list = dao.selectList();
 		System.out.println(list.size());
+		
+
+
+		
 	}
+
 }
 
 

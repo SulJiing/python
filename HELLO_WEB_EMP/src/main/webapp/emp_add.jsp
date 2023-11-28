@@ -1,9 +1,7 @@
 <%@page import="kr.co.aiai.model.Emp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	Emp vo =  (Emp)request.getAttribute("vo");
-%> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +9,11 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function fn_add_act(){
+
 	document.frm.submit();
 }
+
+
 
 </script>
 </head>
@@ -23,32 +24,35 @@ EMP_ADD
 		<tr>
 			<td>사번</td>
 			<td>
-				<input type="text" name="e_id">
-			</td> 
+				<input type="text" name="e_id" /> 
+			</td>
 		</tr>
 		<tr>
 			<td>이름</td>
 			<td>
-				<input type="text" name="e_name" >
+				<input type="text" name="e_name" /> 
 			</td>
 		</tr>
 		<tr>
 			<td>성별</td>
 			<td>
-				<input type="text" name="gen">
+				<input type="text" name="gen" /> 
 			</td>
-				</tr>
+		</tr>
 		<tr>
 			<td>주소</td>
 			<td>
-				<input type="text" name="addr">
+				<input type="text" name="addr" /> 
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="button" value="저장" onclick="fn_add_act()"/>
+				<input type="button" value="저장" onclick="fn_add_act()"  />
 			</td>
 		</tr>
+	</table>
 </form>
 </body>
 </html>
+
+

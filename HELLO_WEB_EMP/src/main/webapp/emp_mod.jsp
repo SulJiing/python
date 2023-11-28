@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%
 	Emp vo =  (Emp)request.getAttribute("vo");
-%> 
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +11,12 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function fn_mod_act(){
+	
+	
 	document.frm.submit();
 }
+
+
 
 </script>
 </head>
@@ -23,32 +27,35 @@ EMP_MOD
 		<tr>
 			<td>사번</td>
 			<td>
-				<input type="text" name="e_id" value="<%=vo.getE_id() %>">
-			</td> 
+				<input type="text" name="e_id" value="<%=vo.getE_id() %>" /> 
+			</td>
 		</tr>
 		<tr>
 			<td>이름</td>
 			<td>
-				<input type="text" name="e_name" value="<%=vo.getE_name() %>">
+				<input type="text" name="e_name" value="<%=vo.getE_name() %>" /> 
 			</td>
 		</tr>
 		<tr>
 			<td>성별</td>
 			<td>
-				<input type="text" name="gen" value="<%=vo.getGen() %>">
+				<input type="text" name="gen" value="<%=vo.getGen()%>" /> 
 			</td>
-				</tr>
+		</tr>
 		<tr>
 			<td>주소</td>
 			<td>
-				<input type="text" name="addr" value="<%=vo.getAddr() %>">
+				<input type="text" name="addr" value="<%=vo.getAddr()%>" /> 
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="button" value="저장" onclick="fn_mod_act()"/>
+				<input type="button" value="저장" onclick="fn_mod_act()"  />
 			</td>
 		</tr>
+	</table>
 </form>
 </body>
 </html>
+
+

@@ -11,9 +11,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-function fn_add() {
-	
+function fn_add(){
+	location.href = "emp_add"
 }
+
 </script>
 </head>
 <body>
@@ -35,9 +36,11 @@ EMP_LIST<br>
 		<td><%=vo.getAddr()%></td>
 	</tr>
 <%} %>
-	<tr align="center">
-		<td colspan="4"><a href="<%=request.getContextPath() %>/emp_add">추가</a></td>
-	</tr>
 </table>
+<input type="button" value="추가" onclick="fn_add()" >
+
 </body>
 </html>
+
+
+

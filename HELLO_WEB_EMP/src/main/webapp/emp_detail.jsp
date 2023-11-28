@@ -14,8 +14,8 @@ function fn_mod(){
 	location.href = "emp_mod?e_id=<%=vo.getE_id() %>";
 }
 function fn_del_act(){
-	var flag = confirm("한번 지워진 데이터는 복구가 불가합니다. 그래도 지우시렵니까?");
-	if(!flag) {
+	var flag = confirm("한번 지워진 데이터는 복구가 불가합니다. 그래도 지워시렵니까?");
+	if(!flag){
 		return;
 	}
 	document.frm.submit();
@@ -26,7 +26,9 @@ function fn_del_act(){
 <body>
 EMP_DETAIL
 <form name="frm" action="emp_del_act" method="post">
-<input type="hidden" name="e_id" value="<%=vo.getE_id() %>">
+<input type="hidden" name="e_id" value="<%=vo.getE_id() %>" >
+
+</form>
 <table border="1px">
 	<tr>
 		<td>사번</td>
@@ -47,10 +49,11 @@ EMP_DETAIL
 	<tr>
 		<td colspan="2">
 			<input type="button" value="수정" onclick="fn_mod()" />
-			<input type="button" value="삭제" onclick="fn_del_act()"/>
+			<input type="button" value="삭제" onclick="fn_del_act()" />
 		</td>
 	</tr>
 </table>
-</form>
 </body>
 </html>
+
+
