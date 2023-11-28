@@ -21,6 +21,5 @@ if(cnt == 1){
 </script>
 </head>
 <body>
-
 </body>
 </html>

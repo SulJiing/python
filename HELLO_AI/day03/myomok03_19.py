@@ -40,7 +40,7 @@ class MainClass(QMainWindow, form_class):
         
         self.setupUi(self)
         self.pb.clicked.connect(self.myreset)
-
+        # 바둑판 만들기
         for i in range(len(self.arr2D)):
             line = []
             for j in range(len(self.arr2D)):
@@ -55,7 +55,7 @@ class MainClass(QMainWindow, form_class):
             
         self.show()
         self.myrender()
-        
+    # 돌을 놓을 때마다 색 바뀌게 만들기
     def myrender(self):
         for i in range(19):
             for j in range(19):
@@ -67,19 +67,19 @@ class MainClass(QMainWindow, form_class):
                     self.pb2D[i][j].setIcon(QtGui.QIcon('2.png'))
 
     def my_click(self): #돌을 놓음
-        if not self.flag_ing:
+        if not self.flag_ing: # 게임이 진행중인지 확인
             return
         str_ij = self.sender().toolTip();
         arr_ij = str_ij.split(",")
         i = int(arr_ij[0])
         j = int(arr_ij[1])
         
-        if self.arr2D[i][j]>0:
+        if self.arr2D[i][j]>0: # 이미 놓여진 자리에 돌 못 놓도록 막아줌
             return
         
         stone = 0
         
-        if self.flag_wb:
+        if self.flag_wb: # 돌의 색깔 정해서 밑의 메서드에 값 전달
             self.arr2D[i][j]=1
             stone = 1
         else:
@@ -116,7 +116,7 @@ class MainClass(QMainWindow, form_class):
                 QMessageBox.about(self,'오목',"백돌승리")
             self.flag_ing = False;
         
-        self.flag_wb = not self.flag_wb
+        self.flag_wb = not self.flag_wb # 여기까지 오면 더 이상 아무곳에도 돌 못 놓도록 만듦
         
         
     def getUL(self,i,j,stone):
