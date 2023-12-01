@@ -11,11 +11,11 @@ ax = fig.add_subplot(1,1,1, projection='3d')
 
 sd = daostock()
 
-samsung = sd.select("삼성전자")
-lg = sd.select("LG")
-sk = sd.select("sk")
-hanhwa = sd.select("한화")
-posco = sd.select("포스코인터내셔널")
+samsung = sd.selectArr("삼성전자")
+lg = sd.selectArr("LG")
+sk = sd.selectArr("sk")
+hanhwa = sd.selectArr("한화")
+posco = sd.selectArr("포스코인터내셔널")
 # 가격을 담을 리스트 생성
 samsungP = []
 skP = []
@@ -83,13 +83,9 @@ for idx, i in enumerate(posco):
     gap = price - firstPrice
     percent = gap/firstPrice*100
     poscoP.append(percent)
-    x5.append(4)
+    x5.append(4)    
     y5.append(idx)
     
-    
-fig=plt.figure()
-
-ax = fig.add_subplot(1,1,1, projection='3d')  
 ax.plot(x1, y1, samsungP, 'r')
 ax.plot(x2, y2, skP, 'g')
 ax.plot(x3, y3, lgP, 'b')
@@ -97,4 +93,3 @@ ax.plot(x4, y4, hanhwaP, '')
 ax.plot(x5, y5, poscoP, '')
     
 plt.show()
-        
