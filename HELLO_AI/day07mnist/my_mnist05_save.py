@@ -24,7 +24,7 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 # 모델 학습 (값,값,돌릴횟수,램사용?클수록 실행하면 분모가 줄어듬,옵션) - 뒤에 3개는 없어도 기본값으로 들어감 - accuracy:정확도
-model.fit(x_train, y_train, epochs=1, batch_size=128, validation_split=0.2)
+model.fit(x_train, y_train, epochs=10, batch_size=128, validation_split=0.2)
 
 # 예측
 pred = model.predict(x_test)
