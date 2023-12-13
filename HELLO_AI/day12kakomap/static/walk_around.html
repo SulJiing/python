@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>마커 생성하기</title>
+    
+</head>
+<body>
+<div id="map" style="width:100%;height:700px;"></div>
+
+<script src="jquery-3.7.1.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=37f75b2b2870ec3c851317073ce9356e"></script>
+<script> 	
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(36.325041179565865,127.40893741445048), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+// var real = [
+// 		{lat:36.32737149237191, tlng:127.40530345978327},
+// 		{lat:36.32733564817707,tlng:127.4052590739133},
+// 		{lat:36.327341919262075,tlng:127.40519743519329},
+// 		{lat:36.32740614806637,tlng:127.40521893995754},
+// 		{lat:36.32744051708679,tlng:127.40525995695526},
+// 		{lat:36.32745618865621,tlng:127.40532153067078},
+// 		{lat:36.32749023253586,tlng:127.40537720649803},
+// 		{lat:36.32749644286897,tlng:127.40544468911999},
+// 		{lat:36.32748228536238,tlng:127.40549759451912},
+// 		{lat:36.32744319300585,tlng:127.40552944720037},
+// 		{lat:36.327398470007694,tlng:127.40557763729623},
+// 		{lat:36.32737025887717,tlng:127.40562443548242},
+// 		{lat:36.32733850704872,tlng:127.4056877614677},
+// 		{lat:36.32731098113457,tlng:127.40573498987658},
+// 		{lat:36.32729322078583,tlng:127.40578881494866},
+// 		{lat:36.32726332964258,tlng:127.40584510077761},
+// 		{lat:36.327215254358286,tlng:127.40586287074892},
+// 		{lat:36.3271784168166,tlng:127.40590222719636},
+// 		{lat:36.32714521860784,tlng:127.40595635380924},
+// 		{lat:36.32711359008177,tlng:127.40600197620405},
+// 		{lat:36.32706604188848,tlng:127.4060488929881},
+// 		{lat:36.32702234791154,tlng:127.40608252559558},
+// 		{lat:36.32698633917044,tlng:127.40611622092827},
+// 		{lat:36.32693139503128,tlng:127.4061305359625},
+// 		{lat:36.326890197480914,tlng:127.40617032302413},
+// 		{lat:36.32685108969857,tlng:127.40620234855757},
+// 		{lat:36.32682221662952,tlng:127.40625708433082},
+// 		{lat:36.32679037972509,tlng:127.40630739632584},
+// 		{lat:36.326768473362904,tlng:127.40637372182243},
+// 		{lat:36.32674513649707,tlng:127.40643415112703},
+// 		{lat:36.32672958643975,tlng:127.4065002926071},
+// 		{lat:36.32669815861264,tlng:127.40655809057405},
+// 		{lat:36.326680048128964,tlng:127.4066121479179},
+// 		{lat:36.32663394511958,tlng:127.40665289033021},
+// 		{lat:36.326591352893864,tlng:127.40669359860618},
+// 		{lat:36.32654934898736,tlng:127.40673009927848},
+// 		{lat:36.32650317951336,tlng:127.40676282659504}
+// ];
+// var markers = [];
+// //마커를 생성합니다
+// for (let i = 0; i < real.length; i++) {
+//     markers.push(new kakao.maps.Marker({
+//         position: new kakao.maps.LatLng(real[i].lat, real[i].tlng)
+//     }));
+// 	    markers[i].setMap(map); 
+//     	console.log(real[i].lat, real[i].tlng);
+// }
+
+function bp_list() {
+	$.ajax({
+		type : "POST",
+		url : "/bp_list",
+		dataType : "JSON",
+		contentType : "application/json",
+		success : function(res) {
+			var list = [
+				{lat:36.326591352893864,lng:127.40669359860618},
+				{lat:36.32654934898736,lng:127.40673009927848},
+				{lat:36.32650317951336,lng:127.40676282659504}
+			];
+			for(var i=0;i<list.length;i++){
+				var bp = list[i]
+				var marker = new kakao.maps.Marker({
+				    position: new kakao.maps.LatLng(bp.lat,bp.lng)
+				});
+			marker.setMap(map);
+			}
+		}
+	});
+}
+bp_list();
+
+</script>
+</body>
+</html>

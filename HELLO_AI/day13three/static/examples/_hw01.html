@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - geometry - cube</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+	<body>
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as THREE from 'three';
+
+			// 카메라, 화면, 그림그리기
+			let camera, scene, renderer;
+			// 상자
+			let mesh_s,mesh_e,mesh_m;
+			// 공전관련 전역변수
+			const R_SE = 20;
+			let t = 0;
+			let t2 = 0;
+			const R_EM = 2;
+
+			init();
+			animate();
+
+			function init() {
+
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 100 );
+				camera.position.z = 30;
+				console.log("camera.position",camera.position);
+
+				scene = new THREE.Scene();
+
+				// 태양
+				const texture_s = new THREE.TextureLoader().load( 'textures/planets/8k_sun.jpg' );
+				const geometry_s = new THREE.SphereGeometry(2,40,40);
+				const material_s = new THREE.MeshBasicMaterial( { map:texture_s } );
+				mesh_s = new THREE.Mesh( geometry_s, material_s );
+				scene.add( mesh_s );
+
+				// 지구
+				const texture_e = new THREE.TextureLoader().load( 'textures/planets/8k_earth_daymap.jpg' );
+				const geometry_e = new THREE.SphereGeometry(1,40,40);
+				const material_e = new THREE.MeshBasicMaterial( { map:texture_e } );
+				mesh_e = new THREE.Mesh( geometry_e, material_e );
+				scene.add( mesh_e );
+				
+				// 달
+				const texture_m = new THREE.TextureLoader().load( 'textures/planets/moon_1024.jpg' );
+				const geometry_m = new THREE.SphereGeometry(0.5,40,40);
+				const material_m = new THREE.MeshBasicMaterial( { map:texture_m } );
+				mesh_m = new THREE.Mesh( geometry_m, material_m );
+				scene.add( mesh_m );
+				
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.body.appendChild( renderer.domElement );
+				
+				// 창을 조절하면 카메라 비율을 맞춰주는 행
+				window.addEventListener( 'resize', onWindowResize );
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+
+			function animate() {
+
+				// 재귀함수 - 만약 밑에다 놓는게 일반적이긴한데 여기선 위에 놓음 이유는 제대로 작동하기 위함
+				requestAnimationFrame( animate );
+				console.log("animate",animate);
+				
+				// 지구 공전
+				mesh_e.position.x = R_SE*Math.cos(t);
+				mesh_e.position.y = R_SE*Math.sin(t);
+				// 선생님
+				mesh_m.position.x = R_SE*Math.cos(t)+R_EM*Math.cos(12*t);
+				mesh_m.position.y = R_SE*Math.sin(t)+R_EM*Math.sin(12*t);
+				t += 0.001;
+				
+				//mesh_e.rotation.x += 0.005;
+				//mesh_e.rotation.y += 0.01;
+				
+				// 달 공전
+				//mesh_m.position.x = mesh_e.position.x+R_EM*Math.cos(t2);
+				//mesh_m.position.y = mesh_e.position.y+R_EM*Math.sin(t2);
+				
+				//t2 += 0.004;
+
+				renderer.render( scene, camera );
+				
+				// 지구를 중심으로 돌기
+				camera.lookAt(mesh_e.position);
+			}
+
+		</script>
+
+	</body>
+</html>
