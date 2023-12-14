@@ -1,12 +1,12 @@
 from flask import Flask,redirect,jsonify
 from flask.templating import render_template
-from day11crawl2.dao_bus_path import DaoBusPath
+from day12kakomap.dao_bus_path import DaoBusPath
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return redirect("static/walk_around.html")
+    return redirect("static/bus_daejeon.html")
 
 @app.route('/bus')
 def bus():
