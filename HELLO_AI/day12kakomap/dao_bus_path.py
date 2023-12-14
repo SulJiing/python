@@ -7,7 +7,7 @@ class DaoBusPath:
         self.curs = self.conn.cursor(pymysql.cursors.DictCursor)
         
     def selectList(self):
-        sql = "select * from bus_path where bp_name='급행1'"
+        sql = "select * from bus_path where bp_name='도시101' OR bp_name='도시103'"
         self.curs.execute(sql)
         list = self.curs.fetchall()
         return list

@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return redirect("static/bus_daejeon.html")
+    return redirect("static/bus_here.html")
 
 @app.route('/bus')
 def bus():
