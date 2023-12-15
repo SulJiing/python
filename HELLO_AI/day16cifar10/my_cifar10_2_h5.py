@@ -53,10 +53,12 @@ model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accura
 # 모델 학습시키기
 # hist는 Epoch 당 학습 결과를 갖게 됩니다.
 hist = model.fit(x_train, y_train,
-                 epochs=2,
+                 epochs=5,
                  batch_size=32,
                  validation_data=(x_test, y_test))
 
 aft = time.time()
+
+model.save('cifar10.h5')
 
 print(aft-bef,"초 경과")

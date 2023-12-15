@@ -16,5 +16,5 @@ import tensorflow
 # pip install --upgrade tensorflow==2.4.1
 # pip install --upgrade keras==2.4.3
 
-# pip install --upgrade tensorflow==2.5.0
+# pip install --upgrade tensorflow==2.5.0S
 # pip install --upgrade tensorflow==2.6.0
